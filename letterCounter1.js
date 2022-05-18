@@ -28,21 +28,29 @@
 //
 // CODE
 'use strict';
+// version 1
+// function wordSizes(str) {
+//   let returnObject = {};
+//
+//   let words = str.split(' ');
+//   words.map(word => word.length).forEach(wordLength => {
+//     if (!returnObject.keys) {
+//       returnObject[wordLength] = 1;
+//     } else if (returnObject.keys.includes(wordLength)) {
+//       returnObject[wordLength] += 1;
+//     }
+//   });
+//
+//   return returnObject;
+// }
 
+// version 2 with reduce
 function wordSizes(str) {
-  let returnObject = {};
-
-  let words = str.split(' ');
-  words.map(word => word.length).forEach(wordLength => {
-    if (!returnObject.keys) {
-      returnObject[wordLength] = 1;
-    } else if (returnObject.keys.includes(wordLength)) {
-      returnObject[wordLength] += 1;
-    }
-  });
-
-  console.log(returnObject);
-  return returnObject;
+  return str.split(' ').map(word => word.length).reduce((wordCount, wordLength) => {
+    wordCount[wordLength] = wordCount[wordLength] ?
+      wordCount[wordLength] + 1 : 1;
+    return wordCount;
+  }, {});
 }
 
 // TESTS
